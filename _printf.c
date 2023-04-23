@@ -48,7 +48,7 @@ int run_printf(const char *format, va_list args, buffer_t *output)
                         }
                         else if (*(format + i + tmp + 1) == '\0')
                         {
-                                ret = -1;
+                                r = -1;
                                 break; }}
                 r += _memcpy(output, (format + i), 1);
                 i += (l != 0) ? 1 : 0; }
