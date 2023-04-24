@@ -52,7 +52,7 @@ unsigned int convert_di(va_list args, buffer_t *output,
   
   long int d, copy;
   
-  unsigned int ret = 0, count = 0;
+  unsigned int r = 0, count = 0;
   
   char pad, space = ' ', neg = '-', plus = '+';
   
@@ -76,7 +76,7 @@ unsigned int convert_di(va_list args, buffer_t *output,
   
   if (SPACE_FLAG == 1 && d >= 0)
     
-    ret += _memcpy(output, &space, 1);
+    r += _memcpy(output, &space, 1);
   
 
   
@@ -112,13 +112,13 @@ unsigned int convert_di(va_list args, buffer_t *output,
       
       if (ZERO_FLAG == 1 && PLUS_FLAG == 1 && d >= 0)
 	
-	ret += _memcpy(output, &plus, 1);
+	r += _memcpy(output, &plus, 1);
       
       /*Print negative sign when zero flag is active */
       
       if (ZERO_FLAG == 1 && d < 0)
 	
-	ret += _memcpy(output, &neg, 1);
+	r += _memcpy(output, &neg, 1);
       
 
       
@@ -126,7 +126,7 @@ unsigned int convert_di(va_list args, buffer_t *output,
       
       for (wid -= count; wid > 0; wid--)
 	
-	ret += _memcpy(output, &pad, 1);
+	r += _memcpy(output, &pad, 1);
       
     }
   
@@ -136,29 +136,29 @@ unsigned int convert_di(va_list args, buffer_t *output,
   
   if (ZERO_FLAG == 0 && d < 0)
     
-    ret += _memcpy(output, &neg, 1);
+    r += _memcpy(output, &neg, 1);
   
   /* Handle plus flag when zero flag is not active */
   
   if (ZERO_FLAG == 0 && (PLUS_FLAG == 1 && d >= 0))
     
-    ret += _memcpy(output, &plus, 1);
+    r += _memcpy(output, &plus, 1);
   
 
   
   if (!(d == 0 && prec == 0))
     
-    ret += convert_sbase(output, d, "0123456789",
+    r += convert_sbase(output, d, "0123456789",
 			 
 			 flags, 0, prec);
   
 
   
-  ret += print_neg_width(output, ret, flags, wid);
+  r += print_neg_width(output, r, flags, wid);
   
 
   
-  return (ret);
+  return (r);
   
 }
 
@@ -244,7 +244,7 @@ unsigned int convert_o(va_list args, buffer_t *output,
   
   unsigned long int num;
   
-  unsigned int ret = 0;
+  unsigned int r = 0;
   
   char zero = '0';
   
@@ -266,23 +266,23 @@ unsigned int convert_o(va_list args, buffer_t *output,
   
   if (HASH_FLAG == 1 && num != 0)
     
-    ret += _memcpy(output, &zero, 1);
+    r += _memcpy(output, &zero, 1);
   
 
   
   if (!(num == 0 && prec == 0))
     
-    ret += convert_ubase(output, num, "01234567",
+    r += convert_ubase(output, num, "01234567",
 			 
 			 flags, wid, prec);
   
 
   
-  ret += print_neg_width(output, ret, flags, wid);
+  r += print_neg_width(output, ret, flags, wid);
   
 
   
-  return (ret);
+  return (r);
   
 }
 
@@ -320,7 +320,7 @@ unsigned int convert_u(va_list args, buffer_t *output,
   
   unsigned long int num;
   
-  unsigned int ret = 0;
+  unsigned int r = 0;
   
 
   
@@ -340,16 +340,16 @@ unsigned int convert_u(va_list args, buffer_t *output,
   
   if (!(num == 0 && prec == 0))
     
-    ret += convert_ubase(output, num, "0123456789",
+    r += convert_ubase(output, num, "0123456789",
 			 
 			 flags, wid, prec);
   
 
   
-  ret += print_neg_width(output, ret, flags, wid);
+  r += print_neg_width(output, r, flags, wid);
   
 
   
-  return (ret);
+  return (r);
   
 }
