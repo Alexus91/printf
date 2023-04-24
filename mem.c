@@ -32,15 +32,15 @@ unsigned int _memcpy(buffer_t *output, const char *src, unsigned int n)
   
 {
   
-  unsigned int index;
+  unsigned int ind;
   
 
   
-  for (index = 0; index < n; index++)
+  for (ind = 0; ind < n; ind++)
     
     {
       
-      *(output->buffer) = *(src + index);
+      *(output->buffer) = *(src + ind);
       
       (output->len)++;
       
