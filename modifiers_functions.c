@@ -39,7 +39,7 @@ unsigned int print_width(buffer_t *output, unsigned int printed,
   
 {
   
-  unsigned int ret = 0;
+  unsigned int r = 0;
   
   char width = ' ';
   
@@ -51,7 +51,7 @@ unsigned int print_width(buffer_t *output, unsigned int printed,
       
       for (wid -= printed; wid > 0;)
 	
-	ret += _memcpy(output, &width, 1);
+	r += _memcpy(output, &width, 1);
       
     }
   
