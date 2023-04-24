@@ -278,7 +278,7 @@ unsigned int convert_o(va_list args, buffer_t *output,
   
 
   
-  r += print_neg_width(output, ret, flags, wid);
+  r += print_neg_width(output, r, flags, wid);
   
 
   
