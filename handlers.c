@@ -11,7 +11,7 @@
 unsigned char handle_flags(const char *flag, char *index)
 {
 	int i, j;
-	unsigned char ret = 0;
+	unsigned char r = 0;
 
 	flag_t flags[] = {
 		    {'+', PLUS},
@@ -28,17 +28,17 @@ unsigned char handle_flags(const char *flag, char *index)
 			if (flag[i] == flags[j].flag)
 			{
 				(*index)++;
-				if (ret == 0)
-					ret = flags[j].value;
+				if (r == 0)
+					r = flags[j].value;
 				else
-					ret |= flags[j].value;
+					r |= flags[j].value;
 				break;
 			}
 		}
 		if (flags[j].value == 0)
 			break;
 	}
-return (ret);
+return (r);
 }
 
 /**
