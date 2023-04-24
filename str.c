@@ -51,7 +51,7 @@ unsigned int convert_s(va_list args, buffer_t *output,
   
   int size;
   
-  unsigned int ret = 0;
+  unsigned int r = 0;
   
 
   
@@ -75,7 +75,7 @@ unsigned int convert_s(va_list args, buffer_t *output,
   
 
   
-  ret += print_string_width(output, flags, wid, prec, size);
+  r += print_string_width(output, flags, wid, prec, size);
   
 
   
@@ -85,7 +85,7 @@ unsigned int convert_s(va_list args, buffer_t *output,
     
     {
       
-      ret += _memcpy(output, str, 1);
+      r += _memcpy(output, str, 1);
       
       prec--;
       
@@ -95,11 +95,11 @@ unsigned int convert_s(va_list args, buffer_t *output,
   
 
   
-  ret += print_neg_width(output, ret, flags, wid);
+  r += print_neg_width(output, r, flags, wid);
   
 
   
-  return (ret);
+  return (r);
   
 }
 
@@ -145,7 +145,7 @@ unsigned int convert_S(va_list args, buffer_t *output,
   
   int size, index;
   
-  unsigned int ret = 0;
+  unsigned int r = 0;
   
 
   
@@ -165,7 +165,7 @@ unsigned int convert_S(va_list args, buffer_t *output,
   
 
   
-  ret += print_string_width(output, flags, wid, prec, size);
+  r += print_string_width(output, flags, wid, prec, size);
   
 
   
@@ -179,13 +179,13 @@ unsigned int convert_S(va_list args, buffer_t *output,
 	
 	{
 	  
-	  ret += _memcpy(output, hex, 2);
+	  r += _memcpy(output, hex, 2);
 	  
 	  if (*(str + index) < 16)
 	    
-	    ret += _memcpy(output, &zero, 1);
+	    r += _memcpy(output, &zero, 1);
 	  
-	  ret += convert_ubase(output, *(str + index),
+	  r += convert_ubase(output, *(str + index),
 			       
 			       "0123456789ABCDEF", flags, 0, 0);
 	  
@@ -193,17 +193,17 @@ unsigned int convert_S(va_list args, buffer_t *output,
 	  
 	}
       
-      ret += _memcpy(output, (str + index), 1);
+      r += _memcpy(output, (str + index), 1);
       
     }
   
 
   
-  ret += print_neg_width(output, ret, flags, wid);
+  r += print_neg_width(output, r, flags, wid);
   
 
   
-  return (ret);
+  return (r);
   
 }
 
@@ -243,7 +243,7 @@ unsigned int convert_r(va_list args, buffer_t *output,
   
   int size, end, i;
   
-  unsigned int ret = 0;
+  unsigned int r = 0;
   
 
   
@@ -267,7 +267,7 @@ unsigned int convert_r(va_list args, buffer_t *output,
   
 
   
-  ret += print_string_width(output, flags, wid, prec, size);
+  r += print_string_width(output, flags, wid, prec, size);
   
 
   
@@ -279,7 +279,7 @@ unsigned int convert_r(va_list args, buffer_t *output,
     
     {
       
-      ret += _memcpy(output, (str + end), 1);
+      r += _memcpy(output, (str + end), 1);
       
       end--;
       
@@ -287,11 +287,11 @@ unsigned int convert_r(va_list args, buffer_t *output,
   
 
   
-  ret += print_neg_width(output, ret, flags, wid);
+  r += print_neg_width(output, r, flags, wid);
   
 
   
-  return (ret);
+  return (r);
   
 }
 
@@ -335,7 +335,7 @@ unsigned int convert_R(va_list args, buffer_t *output,
   
   int i, j, size;
   
-  unsigned int ret = 0;
+  unsigned int r = 0;
   
 
   
@@ -359,7 +359,7 @@ unsigned int convert_R(va_list args, buffer_t *output,
   
 
   
-  ret += print_string_width(output, flags, wid, prec, size);
+  r += print_string_width(output, flags, wid, prec, size);
   
 
   
@@ -377,7 +377,7 @@ unsigned int convert_R(va_list args, buffer_t *output,
 	    
 	    {
 	      
-	      ret += _memcpy(output, (rot13 + j), 1);
+	      r += _memcpy(output, (rot13 + j), 1);
 	      
 	      break;
 	      
@@ -387,16 +387,16 @@ unsigned int convert_R(va_list args, buffer_t *output,
       
       if (j == 52)
 	
-	ret += _memcpy(output, (str + i), 1);
+	r += _memcpy(output, (str + i), 1);
       
     }
   
 
   
-  ret += print_neg_width(output, ret, flags, wid);
+  r += print_neg_width(output, r, flags, wid);
   
 
   
-  return (ret);
+  return (r);
   
 }
