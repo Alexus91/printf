@@ -43,7 +43,7 @@ unsigned int convert_c(va_list args, buffer_t *output,
   
   char c;
   
-  unsigned int ret = 0;
+  unsigned int r = 0;
   
 
   
@@ -57,15 +57,15 @@ unsigned int convert_c(va_list args, buffer_t *output,
   
 
   
-  ret += print_width(output, ret, flags, wid);
+  r += print_width(output, r, flags, wid);
   
-  ret += _memcpy(output, &c, 1);
+  r += _memcpy(output, &c, 1);
   
-  ret += print_neg_width(output, ret, flags, wid);
+  r += print_neg_width(output, r, flags, wid);
   
 
   
-  return (ret);
+  return (r);
   
 }
 
@@ -103,7 +103,7 @@ unsigned int convert_percent(va_list args, buffer_t *output,
   
   char percent = '%';
   
-  unsigned int ret = 0;
+  unsigned int r = 0;
   
 
   
@@ -115,15 +115,15 @@ unsigned int convert_percent(va_list args, buffer_t *output,
   
 
   
-  ret += print_width(output, ret, flags, wid);
+  r += print_width(output, r, flags, wid);
   
-  ret += _memcpy(output, &percent, 1);
+  r += _memcpy(output, &percent, 1);
   
-  ret += print_neg_width(output, ret, flags, wid);
+  r += print_neg_width(output, r, flags, wid);
   
 
   
-  return (ret);
+  return (r);
   
 }
 
@@ -163,7 +163,7 @@ unsigned int convert_p(va_list args, buffer_t *output,
   
   unsigned long int address;
   
-  unsigned int ret = 0;
+  unsigned int r = 0;
   
 
   
@@ -181,14 +181,14 @@ unsigned int convert_p(va_list args, buffer_t *output,
   
   flags |= 32;
   
-  ret += convert_ubase(output, address, "0123456789abcdef",
+  r += convert_ubase(output, address, "0123456789abcdef",
 		       
 		       flags, wid, prec);
   
-  ret += print_neg_width(output, ret, flags, wid);
+  r += print_neg_width(output, r, flags, wid);
   
 
   
-  return (ret);
+  return (r);
   
 }
