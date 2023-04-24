@@ -21,7 +21,7 @@ free_buffer(output); }
  * Return: The number of characters stored to output.
  */
 int run_printf(const char *format, va_list args, buffer_t *output)
-{ int i, wid, prec, ret = 0;
+{ int i, wid, prec, r = 0;
 char tmp;
 unsigned char flags, len;
  /**
@@ -41,16 +41,16 @@ f = handle_specifiers(format + i + tmp + 1);
 if (f != NULL)
 {
 i += tmp + 1;
-ret += f(args, output, flags, wid, prec, len);
+r += f(args, output, flags, wid, prec, len);
 continue; }
 else if (*(format + i + tmp + 1) == '\0')
 {
-ret = -1;
+r = -1;
 break; }}
-ret += _memcpy(output, (format + i), 1);
+r += _memcpy(output, (format + i), 1);
 i += (len != 0) ? 1 : 0; }
 cleanup(args, output);
-return (ret); }
+return (r); }
 /**
  * _printf - Outputs a formatted string.
  * @format: Character string to print - may contain directives.
@@ -60,12 +60,12 @@ return (ret); }
 int _printf(const char *format, ...)
 { buffer_t *output;
 va_list args;
-int ret;
+int r;
 if (format == NULL)
 return (-1);
 output = init_buffer();
 if (output == NULL)
 return (-1);
 va_start(args, format);
-ret = run_printf(format, args, output);
-return (ret); }
+r = run_printf(format, args, output);
+return (re); }
