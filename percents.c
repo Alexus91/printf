@@ -13,7 +13,7 @@
  * Return: The number of bytes stored
  */
 unsigned int convert_c(va_list args, buffer_t *output,
-                       unsigned char flags, int width, int precision, unsigned char length)
+		unsigned char flags, int width, int precision, unsigned char length)
 {
 	char b;
 	unsigned int r = 0;
@@ -25,11 +25,11 @@ unsigned int convert_c(va_list args, buffer_t *output,
 	r += _memcpy(output, &c, 1);
 	r += print_neg_width(output, r, flags, width);
 
-    return (r);
+	return (r);
 }
 
 /**
- * convert_percent - Stores a percent sign to 
+ * convert_percent - Stores a percent sign to
  * buffer
  *
  * @args: va_list pointing to the argument to be converted.
@@ -71,7 +71,7 @@ unsigned int convert_percent(va_list args, buffer_t *output,
  * Return: The number of bytes
  */
 unsigned int convert_p(va_list args, buffer_t *output,
-                       unsigned char flags, int width, int precision, unsigned char length)
+		unsigned char flags, int width, int precision, unsigned char length)
 {
 	char *null = "(nil)";
 	unsigned long int address;
@@ -81,11 +81,13 @@ unsigned int convert_p(va_list args, buffer_t *output,
 	address = va_arg(args, unsigned long int);
 
 	if (address == '\0')
-        return (_memcpy(output, null, 5));
+
+		return (_memcpy(output, null, 5));
 
 	flags |= 32;
 
-	r += convert_ubase(output, address, "0123456789abcdef", flags, width, precision);
+	r += convert_ubase(output, address, "0123456789abcdef",
+			flags, width, precision);
 	r += print_neg_width(output, ret, flags, width);
 
 	return (ret);
