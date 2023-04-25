@@ -1,4 +1,5 @@
 #include "main.h"
+#include <string.h> 
 void cleanup(va_list args, buffer_t *output);
 int run_printf(const char *format, va_list args, buffer_t *output);
 int _printf(const char *format, ...);
@@ -68,4 +69,5 @@ if (output == NULL)
 return (-1);
 va_start(args, format);
 r = run_printf(format, args, output);
-return (r); }
+return (r);
+}
