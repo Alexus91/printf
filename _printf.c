@@ -26,7 +26,9 @@ int run_printf(const char *format, va_list args, buffer_t *output)
 	char tmp;
 	unsigned char flags, len;
 /**
- * int - pointer function
+ * int - input of the function
+ * @f: pointer function
+ * Return: r
  */
 	unsigned int (*f)(va_list, buffer_t *,
 			unsigned char, int, int, unsigned char);
@@ -68,6 +70,7 @@ int _printf(const char *format, ...)
 	buffer_t *output;
 	va_list args;
 	int r;
+
 	if (format == NULL)
 		return (-1);
 	output = init_buffer();
