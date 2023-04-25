@@ -68,4 +68,4 @@ if (output == NULL)
 return (-1);
 va_start(args, format);
 r = run_printf(format, args, output);
-return (re); }
+return (r); }

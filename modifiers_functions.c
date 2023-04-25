@@ -57,7 +57,7 @@ unsigned int print_width(buffer_t *output, unsigned int printed,
   
 
   
-  return (ret);
+  return (r);
   
 }
 
